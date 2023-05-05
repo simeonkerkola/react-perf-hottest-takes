@@ -6,7 +6,8 @@ import { userActions, usersReducer } from './features/users';
 import postData from './api/posts.json';
 import userData from './api/users.json';
 
-export const StateContext = createContext({});
+export const UsersStateContext = createContext();
+export const PostsStateContext = createContext();
 export const ActionsContext = createContext({});
 
 export const Provider = ({ children }) => {
@@ -23,9 +24,11 @@ export const Provider = ({ children }) => {
 
   return (
     <ActionsContext.Provider value={actions}>
-      <StateContext.Provider value={{ posts, users }}>
+      <UsersStateContext.Provider value={ users }>
+      <PostsStateContext.Provider value={ posts }>
         {children}
-      </StateContext.Provider>
+      </PostsStateContext.Provider>
+      </UsersStateContext.Provider>
     </ActionsContext.Provider>
   );
 };
